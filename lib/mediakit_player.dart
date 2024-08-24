@@ -101,9 +101,10 @@ class MediaKitPlayer extends AudioPlayerPlatform {
         _updatePlaybackEvent();
       }),
       _player.stream.error.listen((error) {
-        _processingState = ProcessingStateMessage.idle;
-        _updatePlaybackEvent();
+        // _processingState = ProcessingStateMessage.idle;
+        // _updatePlaybackEvent();
         _logger.severe('ERROR OCCURRED: $error');
+        _eventController.addError(error);
       }),
       _player.stream.playlist.listen((playlist) {
         if (_currentIndex != playlist.index) {
